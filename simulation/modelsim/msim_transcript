@@ -1,0 +1,63 @@
+# Reading C:/intelFPGA_lite/17.1/modelsim_ase/tcl/vsim/pref.tcl
+# do mat_mul_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/17.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/ProyectoFinal/mat_mul {D:/ProyectoFinal/mat_mul/Mem_Manager.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 12:02:02 on Apr 18,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/ProyectoFinal/mat_mul" D:/ProyectoFinal/mat_mul/Mem_Manager.v 
+# -- Compiling module Mem_Manager
+# 
+# Top level modules:
+# 	Mem_Manager
+# End time: 12:02:02 on Apr 18,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/ProyectoFinal/mat_mul {D:/ProyectoFinal/mat_mul/Mem_manager_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 12:02:02 on Apr 18,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/ProyectoFinal/mat_mul" D:/ProyectoFinal/mat_mul/Mem_manager_tb.v 
+# -- Compiling module Mem_manager_tb
+# 
+# Top level modules:
+# 	Mem_manager_tb
+# End time: 12:02:02 on Apr 18,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  Mem_manager_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" Mem_manager_tb 
+# Start time: 12:02:02 on Apr 18,2023
+# Loading work.Mem_manager_tb
+# Loading work.Mem_Manager
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Test case 1 failed!
+# Test case 2 failed!
+# Test case 3 failed!
+# Test case 4 failed!
+# Test case 5 failed!
+# Test case 6 failed!
+# Test case 7 failed!
+# Test case 8 failed!
+# Test case 9 failed!
+# Test case 10 failed!
+# Testbench finished
+# ** Note: $finish    : D:/ProyectoFinal/mat_mul/Mem_manager_tb.v(78)
+#    Time: 91200 ns  Iteration: 0  Instance: /Mem_manager_tb
+# 1
+# Break in Module Mem_manager_tb at D:/ProyectoFinal/mat_mul/Mem_manager_tb.v line 78
+# End time: 12:11:53 on Apr 18,2023, Elapsed time: 0:09:51
+# Errors: 0, Warnings: 0
