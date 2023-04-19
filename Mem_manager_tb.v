@@ -16,6 +16,10 @@ module Mem_manager_tb();
     );
 
     initial begin
+        $dumpfile("test.vcd");
+        $dumpvars(0, Dir_M1_tb);
+        $dumpvars(1, Dir_M2_tb);
+
         clk_tb = 0;
 
         rst_tb = 1;
@@ -29,7 +33,7 @@ module Mem_manager_tb();
         // Test case 1
         #100;
         #1000;
-        $stop;
+        $finish;
     end
 
     always #5 clk_tb = ~clk_tb;

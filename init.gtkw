@@ -1,0 +1,5 @@
+# Set the time scale to 1 ns
+set_time_scale 1ns
+
+# Set the cursor to 500 ns
+set_cursor 500ns
