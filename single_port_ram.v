@@ -4,10 +4,10 @@
 module single_port_ram 
 #(parameter DATA_WIDTH=`WORD_LEN, parameter ADDR_WIDTH=`ADDR_BITS, parameter PARALLEL_READ=`MATRIX_DIM)
 (
-	input [(DATA_WIDTH-1):0] data,
+	input signed [(DATA_WIDTH-1):0] data,
 	input [(ADDR_WIDTH-1):0] addr,
-	input we, clk,
-	output [((DATA_WIDTH*PARALLEL_READ)-1):0] q
+	input we,clk,
+	output signed [((DATA_WIDTH*PARALLEL_READ)-1):0] q
 );
 
 	// Declare the RAM variable

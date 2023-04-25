@@ -1,9 +1,10 @@
 `include "macro.v"
 module pipe_Sum_1
 (
-input clk,
+input clk, we_in,
 input signed [((`WORD_LEN*4)-1):0] In_2,
 
+output reg we_out,
 output signed [((`WORD_LEN*2)-1):0] partial_sum_1
 
 );
@@ -23,7 +24,7 @@ begin
 end
 always @(posedge clk) 
 begin
-    
+         we_out <= we_in;
         suma_acumulada_1[0] <= buffer_1[0] + buffer_1[1];
     
         suma_acumulada_1[1] <= buffer_1[2] + buffer_1[3];

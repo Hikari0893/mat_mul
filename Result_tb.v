@@ -1,34 +1,35 @@
 `include "macro.v"
-module full_mult_tb ();
+module Result_tb();
 
-reg [3:0]we; 
+reg [3:0]we;
 reg src_clk, rst;
-//reg state;
+
 reg [(`ADDR_BITS - 1):0] Dir_M1, Dir_M2; // direccion de memoria
 reg signed[(`WORD_LEN-1):0] data_m1_real,data_m1_imag,data_m2_real,data_m2_imag;   // Necesario para escribir
 
-
-wire signed[((`WORD_LEN)-1):0] coefficient;
+wire we_final;
+wire signed [((`WORD_LEN)-1):0] coefficient;
 
 
 initial src_clk = 0;
-//initial state = `REAL_SET;
 initial rst = 1;
-full_mult Matrix_mult
+
+
+Result_memory_wr_tb  TEST
 (
     .we (we), 
     .src_clk (src_clk), 
     .rst (rst),
-    //.state (state),
+
     .data_m1_real (data_m1_real),
     .data_m1_imag (data_m1_imag),
     .data_m2_real (data_m2_real),
     .data_m2_imag (data_m2_imag),   // Necesario para escribir
     .Dir_M1 (Dir_M1), 
     .Dir_M2 (Dir_M2),
-	 
-	 
-	 .coefficient (coefficient)
+
+    .we_final (we_final),
+    .coefficient (coefficient)
 );
 
 /************************
@@ -186,3 +187,4 @@ end
 always #1 src_clk=~src_clk;
 
 endmodule
+

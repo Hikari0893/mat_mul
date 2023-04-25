@@ -24,14 +24,14 @@ assign Prod [511:448] = Mult_1[255:224] * Mult_2 [255:224];
 //------------------------------------------------------
 
 
-assign Out_1 [31:0]    = {Prod [63:54],Prod[53:32]};
-assign Out_1 [63:32]   = {Prod [127:118],Prod[117:96]};
-assign Out_1 [95:64]   = {Prod [191:182],Prod[181:160]};
-assign Out_1 [127:96]  = {Prod [255:246],Prod[245:224]};
-assign Out_1 [159:128] = {Prod [319:310],Prod[309:288]};
-assign Out_1 [191:160] = {Prod [383:374],Prod[373:352]};
-assign Out_1 [223:192] = {Prod [447:438],Prod[437:416]};
-assign Out_1 [255:224] = {Prod [511:502],Prod[501:480]};
+assign Out_1 [31:0]    = {Prod  [63:54],Prod[53:32]};
+assign Out_1 [63:32]   = {Prod  [127:118],Prod[117:96]};
+assign Out_1 [95:64]   = {Prod  [191:182],Prod[181:160]};
+assign Out_1 [127:96]  = {Prod  [255:246],Prod[245:224]};
+assign Out_1 [159:128] = {Prod  [319:310],Prod[309:288]};
+assign Out_1 [191:160] = {Prod  [383:374],Prod[373:352]};
+assign Out_1 [223:192] = {Prod  [447:438],Prod[437:416]};
+assign Out_1 [255:224] = {Prod  [511:502],Prod[501:480]};
 
 
 

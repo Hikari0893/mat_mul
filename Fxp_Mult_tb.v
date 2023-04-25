@@ -1,48 +1,73 @@
 `include "macro.v"
-module full_mult_tb ();
+`timescale 10ns / 1ns
 
-reg [3:0]we; 
-reg src_clk, rst;
-//reg state;
+module Fxp_Mult_tb ();
+
+// Entradas
 reg [(`ADDR_BITS - 1):0] Dir_M1, Dir_M2; // direccion de memoria
-reg signed[(`WORD_LEN-1):0] data_m1_real,data_m1_imag,data_m2_real,data_m2_imag;   // Necesario para escribir
+reg [3:0] we;
+reg src_clk;
+reg rst_tb;
+reg [(`WORD_LEN-1):0] data_m1_real,data_m1_imag,data_m2_real,data_m2_imag; // Necesario para escribir 
 
-
-wire signed[((`WORD_LEN)-1):0] coefficient;
-
+// SALIDAS
+wire [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m1;
+wire [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m2;
+wire [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m1;
+wire [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m2;
 
 initial src_clk = 0;
-//initial state = `REAL_SET;
-initial rst = 1;
-full_mult Matrix_mult
+
+
+wire [(`ADDR_BITS - 1):0] Dir_M1_t, Dir_M2_t;
+
+assign Dir_M1_t = Dir_M1;
+assign Dir_M2_t = Dir_M2;
+
+Mem_Manager Manager_DUT
 (
-    .we (we), 
-    .src_clk (src_clk), 
-    .rst (rst),
-    //.state (state),
-    .data_m1_real (data_m1_real),
-    .data_m1_imag (data_m1_imag),
-    .data_m2_real (data_m2_real),
-    .data_m2_imag (data_m2_imag),   // Necesario para escribir
-    .Dir_M1 (Dir_M1), 
-    .Dir_M2 (Dir_M2),
-	 
-	 
-	 .coefficient (coefficient)
+    .clk    (src_clk),
+    .rst    (rst_tb),
+    .Dir_M1 (Dir_M1_t),
+    .Dir_M2 (Dir_M2_t)
+); 
+
+
+
+
+
+Q_RAM Q_RAM
+(
+    .we             (we),    
+    .clk            (src_clk),
+    .data_m1_real   (data_m1_real), 
+    .data_m1_imag   (data_m1_imag), 
+    .data_m2_real   (data_m2_real), 
+    .data_m2_imag   (data_m2_imag),    // Necesario para escribir
+    .Dir_M1         (Dir_M1_t), 
+    .Dir_M2         (Dir_M2_t), // direccion de memoria
+    .Br_m1          (Br_m1),
+    .Br_m2          (Br_m2),
+    .Bi_m1          (Bi_m1),
+    .Bi_m2          (Bi_m2) 
 );
 
+
+
+
+
 /************************
-MEMORY HANDLER
+MEMORY HANDLER 
 *************************/
 integer fd_A; // file handler
 integer fd_B; // file handler
 integer scan_file; // file handler
 integer i;
 integer j;
-reg signed[(`WORD_LEN-1):0] captured_data_0;
-reg signed[(`WORD_LEN-1):0] captured_data_1;
-reg signed[(`WORD_LEN-1):0] captured_data_2;
-reg signed[(`WORD_LEN-1):0] captured_data_3;
+reg [(`WORD_LEN-1):0] captured_data_0;
+reg [(`WORD_LEN-1):0] captured_data_1;
+reg [(`WORD_LEN-1):0] captured_data_2;
+reg [(`WORD_LEN-1):0] captured_data_3;
 
 initial begin
 
@@ -152,37 +177,29 @@ initial begin
     #100
     // start reading sequence
     we = 4'b0000;
-	 rst = 1;
-	 //state = `REAL_SET;
+	 rst_tb = 1;
 		  
     #10
-    rst = 0;
+    rst_tb = 0;
     #10
-    rst = 1;
+    rst_tb = 1;
+    #1000;
 	 
-	 
-	 //state = `IMAG_SET;
-	 
-	 
-    //#10;
-    //Dir_M1 = 7'h00;
-    //Dir_M2 = 7'h00;
-    #10000
-	 
-	 
-	 
-	 
-	 
+    #10;
+    Dir_M1 = 7'h00;
+    Dir_M2 = 7'h00;
+    #1000
     $stop;
 
 	$fclose(fd_A);
 	$fclose(fd_B);
     // parallel read testing
-    $stop;
+   $stop;
 end
 
 
 
 always #1 src_clk=~src_clk;
+
 
 endmodule
