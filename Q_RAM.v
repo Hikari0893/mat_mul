@@ -4,12 +4,12 @@ module Q_RAM
 (
     input [3:0]we, 
     input clk,
-    input [(`WORD_LEN-1):0] data_m1_real,data_m1_imag,data_m2_real,data_m2_imag,   // Necesario para escribir
-    input [(`ADDR_BITS - 1):0] Dir_M1, Dir_M2, // direccion de memoria
-    output [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m1,
-    output [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m2,
-    output [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m1,
-    output [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m2
+    input signed [(`WORD_LEN-1):0] data_m1_real,data_m1_imag,data_m2_real,data_m2_imag,   // Necesario para escribir
+    input  [(`ADDR_BITS - 1):0] Dir_M1, Dir_M2, // direccion de memoria
+    output signed [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m1,
+    output signed [((`WORD_LEN*`MATRIX_DIM)-1):0] Br_m2,
+    output signed [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m1,
+    output signed [((`WORD_LEN*`MATRIX_DIM)-1):0] Bi_m2
 
 );
 
